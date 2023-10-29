@@ -35,7 +35,7 @@ async def aggregate_salary_data_async(json_string):
         next_date = min(current_date + relativedelta(months=1), end_date)
 
     while True:
-        print(f"{current_date} = {next_date}")
+
         if current_date == end_date:
             break
 
@@ -92,7 +92,6 @@ async def process_json_message(message: types.Message):
     try:
         json_string = message.text
         result = await aggregate_salary_data_async(json_string)
-        print(result)
         await message.answer(result)
     except Exception as e:
         await message.answer("Ошибка: " + str(e))
